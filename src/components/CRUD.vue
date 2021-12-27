@@ -23,7 +23,7 @@
         <button @click="signout()">登出</button>
       </div>
     </section>
-    <section id="CRUD">
+    <section id="CRUD" v-show="user_authority != 3">
       <div class="add" v-show="add.open == 1">
         <h1>欲新增之商品內容</h1>
         <div>
@@ -95,7 +95,8 @@
 
 <script>
 import axios from "axios";
-const php_url = "./static/wasa_api/";
+// const php_url = "./static/wasa_api/";
+const php_url = "http://localhost/static/wasa_api/";
 export default {
   name: "CRUD",
   data() {
@@ -173,7 +174,7 @@ export default {
     },
     // 新增
     addItem() {
-      if (this.user_authority != 1 || this.user_authority != 2) {
+      if (this.user_authority != 1 && this.user_authority != 2) {
         alert("權限不足");
         return;
       }
@@ -200,7 +201,7 @@ export default {
     },
     // 修改
     modifyItem() {
-      if (this.user_authority != 1 || this.user_authority != 2) {
+      if (this.user_authority != 1 && this.user_authority != 2) {
         alert("權限不足");
         return;
       }
